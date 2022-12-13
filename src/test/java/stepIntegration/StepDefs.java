@@ -46,7 +46,7 @@ public class StepDefs {
         List<String> items= Stream.of(dataTable.row(1).get(1).split(","))
                 .map(String::trim)
                 .collect(Collectors.toList());
-        world.setResponse(request.processHttpRequestWithAuth(world.getMethod(), world.getEndPointUrl(), new EnrichTransactionsRequest(Collections.singletonList(dataTable.row(0).get(1)), (List<TransactionForEnrichment>) new TransactionForEnrichment(items.get(0),items.get(1),items.get(2),items.get(2))),"auth"));
+        world.setResponse(request.processHttpRequestWithAuth(world.getMethod(), world.getEndPointUrl(), new EnrichTransactionsRequest(Collections.singletonList(dataTable.row(0).get(1)), new TransactionForEnrichment(items.get(0),items.get(1),items.get(2),items.get(3))),"auth"));
     }
 
     @When("performed Not Authorised HTTP request with body:")
@@ -54,7 +54,7 @@ public class StepDefs {
         List<String> items= Stream.of(dataTable.row(1).get(1).split(","))
                 .map(String::trim)
                 .collect(Collectors.toList());
-        world.setResponse(request.processHttpRequestWithAuth(world.getMethod(), world.getEndPointUrl(), new EnrichTransactionsRequest(Collections.singletonList(dataTable.row(0).get(1)), (List<TransactionForEnrichment>) new TransactionForEnrichment(items.get(0),items.get(1),items.get(2),items.get(2))),"unauth"));
+        world.setResponse(request.processHttpRequestWithAuth(world.getMethod(), world.getEndPointUrl(), new EnrichTransactionsRequest(Collections.singletonList(dataTable.row(0).get(1)), new TransactionForEnrichment(items.get(0),items.get(1),items.get(2),items.get(2))),"unauth"));
     }
 
     @When("performed Expired OAuth HTTP request with body:")
@@ -62,7 +62,7 @@ public class StepDefs {
         List<String> items= Stream.of(dataTable.row(1).get(1).split(","))
                 .map(String::trim)
                 .collect(Collectors.toList());
-        world.setResponse(request.processHttpRequestWithAuth(world.getMethod(), world.getEndPointUrl(), new EnrichTransactionsRequest(Collections.singletonList(dataTable.row(0).get(1)), (List<TransactionForEnrichment>) new TransactionForEnrichment(items.get(0),items.get(1),items.get(2),items.get(2))),"expired"));
+        world.setResponse(request.processHttpRequestWithAuth(world.getMethod(), world.getEndPointUrl(), new EnrichTransactionsRequest(Collections.singletonList(dataTable.row(0).get(1)), new TransactionForEnrichment(items.get(0),items.get(1),items.get(2),items.get(2))),"expired"));
     }
 
 

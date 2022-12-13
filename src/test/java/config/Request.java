@@ -3,7 +3,6 @@ package config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
-import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import model.OAuthTokenRequest;
@@ -32,7 +31,7 @@ public class Request {
         String actualError = response.body().jsonPath().get("error");
         assertThat(actualError, Matchers.is(expectedError));
     }
-    
+
     protected String createJSONPayload(Object pojo) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(pojo);

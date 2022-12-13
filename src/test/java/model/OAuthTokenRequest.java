@@ -15,6 +15,6 @@ public class OAuthTokenRequest {
         this.client_id = client_id;
         this.client_secret = client_secret;
     }
-
-
+    public OAuthTokenRequest() {
+    }
 }

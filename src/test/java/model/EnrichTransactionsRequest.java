@@ -12,9 +12,9 @@ public class EnrichTransactionsRequest {
 
     private List<String> enrichments;
 
-    private List<TransactionForEnrichment> transactions;
+    private TransactionForEnrichment transactions;
 
-    public EnrichTransactionsRequest(List<String> enrichments, List<TransactionForEnrichment> transactions) {
+    public EnrichTransactionsRequest(List<String> enrichments,  TransactionForEnrichment transactions) {
         this.enrichments = enrichments;
         this.transactions = transactions;
     }
