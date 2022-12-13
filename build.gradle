@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.9.0"
+
+    testImplementation 'io.cucumber:cucumber-java:7.9.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.9.0'
+    testImplementation 'io.cucumber:cucumber-spring:7.9.0'
+    testImplementation 'io.rest-assured:rest-assured:5.3.0'
+    testImplementation 'org.json:json:20220924'
+    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.6'
+    testImplementation 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+    testImplementation 'io.rest-assured:json-schema-validator:5.3.0'
+}
+
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath += files(sourceSets.test.runtimeClasspath)
+            args = ['--glue', 'stepIntegration',
+                    '--plugin', 'html:build/cucumber',
+                    '--tags','@Test',
+                    'src/test/resources']
+        }
+    }
+}
+
+
+test {
+    useJUnitPlatform()
+}
